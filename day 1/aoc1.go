@@ -64,4 +64,6 @@ func main() {
 
 	fmt.Println("left array: ", left,"\nright array: ", right)
 	fmt.Println("woahsum Value: ", woahsum)
+
+	fmt.Println("Dayum them similarity is: ", similarity(left, right))
 }
