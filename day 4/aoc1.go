@@ -56,17 +56,21 @@ func main() {
 	count := 0
 	for i:=0; i<len(mat); i++ {
 		for j:=0; j<len(mat[0]); j++ {
-			if string(mat[i][j]) != "X" {
+			if string(mat[i][j]) != "A" {
 				continue
 			}
-			hasMas, cnt := snowCrystal(i, j, mat) 
-			if hasMas {
+			// if string(mat[i][j]) != "X" {        // for part 1
+			// 	continue
+			// }
+			// hasMas, cnt := snowCrystal(i, j, mat) 
+			hasX_Mas, cnt := X_MAS(i, j, mat)
+			if hasX_Mas {
 				count += cnt
 			}
 		}
-		fmt.Printf("loop %d done...\n", i)
+		fmt.Printf("loop %d done...\n", i+1)
 	}
 
-	fmt.Println("Occurence of XMAS: ", count)
+	fmt.Println("Occurence of X-MAS: ", count)
 	
 }
