@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func readLines(filename string) []string {
+func ReadLines(filename string) []string {
 	file,err := os.ReadFile(filename)
 	if err != nil {
 		return []string{"file not found"}
@@ -23,10 +23,10 @@ func Atoi(a string) (int) {
 	return x
 }
 
-func AvectoIvec(aVec string) ([]int) {
+func AvectoIvec(aVec []string) ([]int) {
 	iVec := make([]int, len(aVec))
 	for i,a := range aVec {
-		iVec[i] = Atoi(string(a))
+		iVec[i] = Atoi(a)
 	}
 	return iVec
 }
