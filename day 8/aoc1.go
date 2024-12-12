@@ -40,7 +40,7 @@ func calcAntiNodes(grid map[byte][]point) (int) {
 				}
 				x:=v[j].X + (v[j].X - v[i].X)
 				y:=v[j].Y + (v[j].Y - v[i].Y)
-				if x >= 0 && x < 50 && y >= 0 && y < 50 && !overlapping(x,y, visited){
+				if x >= 0 && x < 12 && y >= 0 && y < 12 && !overlapping(x,y, visited){
 					count++
 					visited = append(visited, point{X: x, Y: y})
 				}
@@ -71,16 +71,27 @@ func ResonantAntiNodes(grid map[byte][]point) (int) {
 		for i:=0; i<len(v); i++ {
 			for j:=0; j<len(v); j++ {
 				if i==j {
-					continue
-				}
-				for z:=1; ; z++ {
-					x:=v[j].X + z*(v[j].X - v[i].X)
-					y:=v[j].Y + z*(v[j].Y - v[i].Y)
-					if x >= 0 && x < 50 && y >= 0 && y < 50 && !overlapping(x,y, visited){
+					fmt.Println(v[j].X, v[j].Y)
+					if !overlapping(v[j].X, v[j].Y, visited) {
 						count++
-						visited = append(visited, point{X: x, Y: y})
-					} else {
-						break
+						visited = append(visited, point{X: v[j].X, Y: v[j].Y})
+						fmt.Println(visited)
+					}
+				} else {
+					for z:=1; ; z++ {
+						x:=v[j].X + z*(v[j].X - v[i].X)
+						y:=v[j].Y + z*(v[j].Y - v[i].Y)
+						if x >= 0 && x < 12 && y >= 0 && y < 12 && !overlapping(x,y, visited){
+							count++
+							visited = append(visited, point{X: x, Y: y})
+							fmt.Println(visited)
+						} else {
+							if x >= 0 && x < 12 && y >= 0 && y < 12 {
+								continue
+							} else {
+								break
+							}
+						}
 					}
 				}
 			}
