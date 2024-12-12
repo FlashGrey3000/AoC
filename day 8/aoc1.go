@@ -22,13 +22,12 @@ func main() {
 		}
 	}
 
-	fmt.Println(grid)
-
 	fmt.Println("antinodes: ", calcAntiNodes(grid))
 }
 
 func calcAntiNodes(grid map[byte][]point) (int) {
 	count := 0
+	visited := make([]point, 0)
 	for k,v := range grid {
 		if k == '.' {
 			continue
@@ -40,15 +39,23 @@ func calcAntiNodes(grid map[byte][]point) (int) {
 				}
 				x:=v[j].X + (v[j].X - v[i].X)
 				y:=v[j].Y + (v[j].Y - v[i].Y)
-				fmt.Print(v[j].X, v[j].Y, v[i].X, v[i].Y)
-				if x >= 0 && x < 12 && y >= 0 && y < 12 {
+				if x >= 0 && x < 50 && y >= 0 && y < 50 && !overlapping(x,y, visited){
 					count++
-					fmt.Print(" : ", x, y)
+					visited = append(visited, point{X: x, Y: y})
 				}
-				fmt.Print("\n")
 			}
 		}
 	}
 
 	return count
+}
+
+func overlapping(x, y int, visited []point) (bool) {
+	p := point{X: x, Y: y}
+	for _,po := range visited {
+		if po == p {
+			return true
+		}
+	}
+	return false
 }
